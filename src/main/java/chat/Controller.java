@@ -84,7 +84,7 @@ public class Controller {
         chatRoom.getMessages().add(mensaje);
         session.beginTransaction();
         session.save(mensaje);
-        session.getTransaction().commit(); //Error de serialize
+        session.getTransaction().commit();
     }
 
     /**
@@ -114,8 +114,8 @@ public class Controller {
         Query query = session.createQuery("DELETE FROM Message WHERE creator = :creator AND chatRoom = :chatRoom");
         query.setParameter("creator", user);
         query.setParameter("chatRoom", chatRoom);
-        int messagesDeleted = query.executeUpdate();
+        int deleted = query.executeUpdate();
         session.getTransaction().commit();
-        return messagesDeleted;
+        return deleted;
     }
 }
